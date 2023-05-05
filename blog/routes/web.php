@@ -15,7 +15,7 @@ use App\Http\Controllers\BlogController;
 |
 */
 
-Route::get('/abc', function () {
+Route::get('/', function () {
     return view('welcome');
 });
 
@@ -27,3 +27,7 @@ Route::get('/page-form', [TestController::class, 'form']) ;
 Route::post('/page-form', [TestController::class, 'index']);
 
 Route::get('/home', [BlogController::class, 'index']);
+Route::get('/about', [BlogController::class, 'about']);
+Route::get('/message', [BlogController::class, 'message']);
+Route::get('/contact', [BlogController::class, 'contact']);
+Route::post('/contact', [BlogController::class, 'contactForm']);
