@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TestController;
+use App\Http\Controllers\BlogController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +15,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/abc', function () {
     return view('welcome');
 });
+
+
+
+Route::get('/test', [TestController::class, 'index']) ;
+Route::get('/test-a', [TestController::class, 'test']) ;
+Route::get('/page-form', [TestController::class, 'form']) ;
+Route::post('/page-form', [TestController::class, 'index']);
+
+Route::get('/home', [BlogController::class, 'index']);
