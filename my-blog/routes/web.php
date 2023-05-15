@@ -17,5 +17,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('blog', [BlogPostController::class, 'index']);
-Route::get('blog/{blogPost}', [BlogPostController::class, 'show']);
+Route::get('blog', [BlogPostController::class, 'index'])->name('blog.index');
+Route::get('blog/{blogPost}', [BlogPostController::class, 'show'])->name('blog.show');
+Route::get('blog-create', [BlogPostController::class, 'create'])->name('blog.create');
+Route::post('blog-create', [BlogPostController::class, 'store']);
+Route::get('blog-edit/{blogPost}', [BlogPostController::class, 'edit'])->name('blog.edit');

@@ -25,7 +25,7 @@ class BlogPostController extends Controller
      */
     public function create()
     {
-        //
+        return view('blog.create');
     }
 
     /**
@@ -36,7 +36,16 @@ class BlogPostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //return $request;
+
+        $newPost = BlogPost::create([
+            'title' => $request->title,
+            'body' => $request->body,
+            'user_id' => 1
+        ]);
+
+        return redirect(route('blog.show', $newPost->id));
+        //return view ('blog.show', ['blogPost' => $newPost]);
     }
 
     /**
@@ -48,7 +57,7 @@ class BlogPostController extends Controller
     public function show(BlogPost $blogPost)
     {
         //$blogPost = pdo->prepare(Select * from blog_posts where id = ?)  
-        return $blogPost;
+        return view ('blog.show', ['blogPost' => $blogPost]);
     }
 
     /**
@@ -59,7 +68,7 @@ class BlogPostController extends Controller
      */
     public function edit(BlogPost $blogPost)
     {
-        //
+        return view('blog.edit', ['blogPost' => $blogPost]);
     }
 
     /**

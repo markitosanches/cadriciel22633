@@ -15,5 +15,9 @@ class BlogPost extends Model
 
     //protected $timestamp =  false; not using created_at updated_at
 
-    
+    protected $fillable = [
+        'title',
+        'body',
+        'user_id'
+    ];
 }
