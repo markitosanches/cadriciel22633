@@ -56,7 +56,12 @@ class BlogPostController extends Controller
      */
     public function show(BlogPost $blogPost)
     {
-        //$blogPost = pdo->prepare(Select * from blog_posts where id = ?)  
+        //$blogPost = pdo->prepare(Select * from blog_posts where id = ?) 
+       /* $blog = BlogPost::select()
+          ->join('users', 'users.id', '=','user_id')
+          ->where('id', $blogPost)
+          ->first();*/
+
         return view ('blog.show', ['blogPost' => $blogPost]);
     }
 
@@ -80,7 +85,15 @@ class BlogPostController extends Controller
      */
     public function update(Request $request, BlogPost $blogPost)
     {
-        //
+        //return $request;
+        //return $blogPost;
+        $blogPost->update([
+            'title' => $request->title,
+            'body' => $request->body
+        ]);
+
+        return redirect(route('blog.show', $blogPost));
+
     }
 
     /**
@@ -91,6 +104,71 @@ class BlogPostController extends Controller
      */
     public function destroy(BlogPost $blogPost)
     {
-        //
+        //return $blogPost;
+        $blogPost->delete();
+
+        return redirect(route('blog.index'));
     }
+
+    public function query(){
+
+        //SELECT * FROM blog_posts
+        //$blog = BlogPost::all();
+
+       //$blog = BlogPost::select('title', 'body')->get();
+       // $blog = $blog[0]
+
+        //$blog = BlogPost::select('title', 'body')->first();
+
+        //SELECT * FROM blog_posts WHERE user_id = 1
+       /* $blog  = BlogPost::select()
+                ->where('user_id', "=",1)
+                ->get();*/
+        //Primary key     
+        //SELECT * FROM blog_posts WHERE blog_id = 1  
+
+         //Primary key  
+        //$blog = BlogPost::find(2);        
+
+        //AND
+        //SELECT * FROM blog_posts WHERE blog_id = 1 AND id = 1; 
+        $blog  = BlogPost::select()
+                ->where('user_id', "=",2)
+                ->where('id', "=", 1)
+                ->get();
+        //OR
+        //SELECT * FROM blog_posts WHERE blog_id = 1 OR id = 1; 
+        $blog  = BlogPost::select()
+                ->where('user_id', "=",2)
+                ->orWhere('id', "=", 1)
+                ->get();       
+
+        //SELECT * FROM blog_posts ORDER BY title DESC; 
+        $blog  = BlogPost::select()
+                ->orderBy('title', 'DESC')
+                ->get();
+       
+        //INNER JOIN
+        //SELECT * FROM blog_posts INNER JOIN users ON users.id = user_id 
+          $blog = BlogPost::select()
+          ->join('users', 'users.id', '=','user_id')
+          ->get();
+
+        //OUTER JOIN
+        //SELECT * FROM blog_posts RIGHT OUTER JOIN users ON users.id = user_id 
+        /*$blog = BlogPost::select()
+        ->rightJoin('users', 'users.id', '=','user_id')
+        ->get();*/
+
+        //Aggreate MAx Min COunt Sum Avg
+
+        //$blog = BlogPost::max('id');
+
+        $blog = BlogPost::select()
+        ->join('users', 'users.id', '=','user_id')
+        ->count();
+
+        return $blog;
+    }
+
 }

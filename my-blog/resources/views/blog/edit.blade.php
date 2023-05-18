@@ -7,6 +7,7 @@
             <div class="card">
                 <form method="post">
                     @csrf
+                    @method('put')
                     <div class="card-header">
                         Formulaire
                     </div>
