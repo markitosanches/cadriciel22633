@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\BlogPost;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class BlogPostController extends Controller
 {
@@ -168,7 +169,23 @@ class BlogPostController extends Controller
         ->join('users', 'users.id', '=','user_id')
         ->count();
 
+        //requetes brutes (raw queries)
+
+        //SELECT count(*) as blogs, user_id FROM blog_posts GROUP BY user_id;
+
+        $blog = BlogPost::select(DB::raw('count(*) as blogs'), 'user_id')
+        ->groupBy('user_id')
+        ->get();
+
         return $blog;
+    }
+
+    public function pages(){
+        $blogs = BlogPost::Select()
+                ->orderBy('title')
+                ->paginate(5);
+
+        return view('blog.pages', ['blogs' => $blogs]);        
     }
 
 }
