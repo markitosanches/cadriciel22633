@@ -8,12 +8,52 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 </head>
 <body>
+    <nav class="navbar navbar-expand-lg bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Hello {{Auth::user() ? Auth::user()->name : 'Guest'}}</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                @guest
+                    <a class="nav-link" href="{{route('registration')}}">Registration</a>
+                    <a class="nav-link" href="{{route('login')}}">Login</a>
+                @else
+                    <a class="nav-link" href="">Users</a>
+                    <a class="nav-link" href="{{route('blog.index')}}">Blogs</a>
+                    <a class="nav-link" href="{{route('logout')}}">Logout</a>
+                @endguest
+            </div>
+            </div>
+        </div>
+    </nav>
     <div class="container">
         <div class="row">
             <div class="col-12 text-center">
                 <h1 class="display-6 mt-5">
                     @yield('titleHeader')
                 </h1>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-6">
+                @if(session('success'))
+                    <div class="alert alert-success alert-dismissible fade show">
+                        {{session('success')}}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
+                @if(!$errors->isEmpty())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach($errors->all() as $error)
+                                <li>{{$error}}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
             </div>
         </div>
 @yield('content')

@@ -6,6 +6,7 @@ use App\Models\BlogPost;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class BlogPostController extends Controller
 {
@@ -16,8 +17,11 @@ class BlogPostController extends Controller
      */
     public function index()
     {
+        //if(Auth::check()){
         $posts = BlogPost::all(); //select * from blog_posts
         return view('blog.index', ['posts' => $posts]);
+        //}
+        //return redirect(route('login'));
     }
 
     /**
@@ -49,7 +53,7 @@ class BlogPostController extends Controller
             'title' => $request->title,
             'body' => $request->body,
             'category_id' => $request->category_id,
-            'user_id' => 1
+            'user_id' => Auth::user()->id
         ]);
 
         return redirect(route('blog.show', $newPost->id));
