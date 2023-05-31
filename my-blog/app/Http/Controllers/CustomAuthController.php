@@ -78,5 +78,14 @@ class CustomAuthController extends Controller
         Auth::logout();
         return redirect(route('login'));
     }
-   
+
+    public function userList(){
+        $users = User::select('id','name')
+                ->orderby('name')
+                ->paginate(5);
+
+        //return  $users;
+
+        return view('auth.user-list', ['users'=>$users]);
+    }
 }
