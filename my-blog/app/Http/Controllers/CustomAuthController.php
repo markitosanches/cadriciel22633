@@ -51,7 +51,7 @@ class CustomAuthController extends Controller
         $user->save();
 
        // return redirect()->back()->withSuccess('Utilisateur enregistré');
-        return redirect(route('login'))->withSuccess('Utilisateur enregistré');
+        return redirect(route('login'))->withSuccess(trans('lang.text_success_user'));
     }
 
     public function authentication(Request $request){
