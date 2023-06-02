@@ -10,6 +10,7 @@
 <body>
     <nav class="navbar navbar-expand-lg bg-light">
         <div class="container-fluid">
+            @php $lang = session('locale') @endphp
             <a class="navbar-brand" href="#">Hello {{Auth::user() ? Auth::user()->name : 'Guest'}}</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -20,10 +21,12 @@
                     <a class="nav-link" href="{{route('registration')}}">Registration</a>
                     <a class="nav-link" href="{{route('login')}}">Login</a>
                 @else
-                    <a class="nav-link" href="">Users</a>
+                    <a class="nav-link" href="{{route('user.list')}}">Users</a>
                     <a class="nav-link" href="{{route('blog.index')}}">Blogs</a>
                     <a class="nav-link" href="{{route('logout')}}">Logout</a>
                 @endguest
+                    <a class="nav-link" href="{{route('lang', 'fr')}}">Francais</a>
+                    <a class="nav-link" href="{{route('lang', 'en')}}">English</a>
             </div>
             </div>
         </div>
