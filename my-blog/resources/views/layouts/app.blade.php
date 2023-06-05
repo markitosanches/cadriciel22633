@@ -27,8 +27,8 @@
                     <a class="nav-link" href="{{route('blog.index')}}">@lang('lang.text_blogs')</a>
                     <a class="nav-link" href="{{route('logout')}}">@lang('lang.text_logout')</a>
                 @endguest
-                    <a class="nav-link @if($lang == 'fr') text-info @endif" href="{{route('lang', 'fr')}}">Francais <i class='flag flag-france'></i></a>
-                    <a class="nav-link @if($lang == 'en') text-info @endif" href="{{route('lang', 'en')}}">English <i class='flag flag-united-states'></i></a>
+                        <a class="nav-link @if($lang == 'fr') text-info @endif" href="{{route('lang', 'fr')}}">Francais <i class='flag flag-france'></i></a>
+                        <a class="nav-link @if($lang == 'en') text-info @endif" href="{{route('lang', 'en')}}">English <i class='flag flag-united-states'></i></a>
             </div>
             </div>
         </div>
