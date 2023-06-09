@@ -21,4 +21,8 @@ return [
     'text_blogs' => 'Bloges',
     'text_users' => 'Utilisateurs',
 
+    // auth.forgot
+    'text_forgot_password' => 'Mot de passe oublie',
+    'text_send' => 'Envoyer'
+
 ];

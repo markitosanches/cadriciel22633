@@ -21,6 +21,12 @@ return [
     'text_blogs' => 'Blogs',
     'text_users' => 'Users',
     
+// auth.forgot
+    'text_forgot_password' => 'Forgot Password',
+    'text_send' => 'Send',
 
+// auth.new-password
+'text_new_password' => 'New Password',
+'text_confirm_password' => 'Confirm Password',
 
 ];

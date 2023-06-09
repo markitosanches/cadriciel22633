@@ -40,3 +40,8 @@ Route::get('logout', [CustomAuthController::class, 'logout'])->name('logout');
 Route::get('user-list', [CustomAuthController::class, 'userList'])->name('user.list')->middleware('auth');
 
 Route::get('lang/{locale}', [LocalizationController::class, 'index'])->name('lang');
+
+Route::get('forgot-password', [CustomAuthController::class, 'forgotPassword'])->name('forgot.password');
+Route::post('forgot-password', [CustomAuthController::class, 'tempPassword']);
+Route::get('new-password/{user}/{tempPassword}', [CustomAuthController::class, 'newPassword'])->name('new.password');
+Route::put('new-password/{user}/{tempPassword}', [CustomAuthController::class, 'storeNewPassword']);
