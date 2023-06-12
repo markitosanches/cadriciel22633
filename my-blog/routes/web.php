@@ -27,6 +27,8 @@ Route::get('blog-edit/{blogPost}', [BlogPostController::class, 'edit'])->name('b
 Route::put('blog-edit/{blogPost}', [BlogPostController::class, 'update'])->middleware('auth');
 Route::delete('blog/{blogPost}', [BlogPostController::class, 'destroy'])->middleware('auth');
 
+Route::get('blog-pdf/{blogPost}', [BlogPostController::class, 'showPdf'])->name('blog.showPdf')->middleware('auth');
+
 Route::get('query', [BlogPostController::class, 'query']);
 Route::get('blog-page', [BlogPostController::class, 'pages']);
 

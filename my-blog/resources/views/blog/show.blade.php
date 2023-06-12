@@ -22,10 +22,13 @@
             <hr>
         </div>
         <div class="row">
-            <div class="col-6">
+          <div class="col-4">
+                <a href="{{ route('blog.showPdf', $blogPost->id)}}" class="btn btn-warning">PDF</a>
+            </div>
+            <div class="col-4">
                 <a href="{{ route('blog.edit', $blogPost->id)}}" class="btn btn-success">Modifier</a>
             </div>
-            <div class="col-6">
+            <div class="col-4">
                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalDelete">
                     Effacer
                 </button>
