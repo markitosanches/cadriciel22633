@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class CustomAuthController extends Controller
 {
@@ -82,6 +84,15 @@ class CustomAuthController extends Controller
         $user = Auth::getProvider()->retrieveByCredentials($credentials);
 
         Auth::login($user);
+        
+        $user->syncRoles([]);
+        $user->syncPermissions([]);
+        if($user->role == 1){
+            //return $user;
+            $user->assignRole('Admin');
+        }elseif($user->role == 2){
+            $user->assignRole('Editor');
+        }
 
         return redirect()->intended(route('blog.index'));
 
@@ -89,6 +100,7 @@ class CustomAuthController extends Controller
 
     public function logout(){
         Auth::logout();
+       // $user->removeRole('Editor');
         return redirect(route('login'));
     }
 

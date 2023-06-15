@@ -23,7 +23,9 @@
                     <a class="nav-link" href="{{route('registration')}}">@lang('lang.text_registration')</a>
                     <a class="nav-link" href="{{route('login')}}">@lang('lang.text_login')</a>
                 @else
+                @can('list-user')
                     <a class="nav-link" href="{{route('user.list')}}">@lang('lang.text_users')</a>
+                @endcan
                     <a class="nav-link" href="{{route('blog.index')}}">@lang('lang.text_blogs')</a>
                     <a class="nav-link" href="{{route('logout')}}">@lang('lang.text_logout')</a>
                 @endguest

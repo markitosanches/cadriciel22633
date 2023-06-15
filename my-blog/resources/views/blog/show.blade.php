@@ -26,12 +26,16 @@
                 <a href="{{ route('blog.showPdf', $blogPost->id)}}" class="btn btn-warning">PDF</a>
             </div>
             <div class="col-4">
+              @can('edit-blog-posts')
                 <a href="{{ route('blog.edit', $blogPost->id)}}" class="btn btn-success">Modifier</a>
+              @endcan
             </div>
             <div class="col-4">
+              @can('delete-blog-posts')
                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalDelete">
                     Effacer
                 </button>
+              @endcan  
             </div>
         </div>
 

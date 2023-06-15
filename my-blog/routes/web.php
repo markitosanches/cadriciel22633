@@ -33,13 +33,13 @@ Route::get('query', [BlogPostController::class, 'query']);
 Route::get('blog-page', [BlogPostController::class, 'pages']);
 
 
-Route::get('registration', [CustomAuthController::class, 'create'])->name('registration');
+Route::get('registration', [CustomAuthController::class, 'create'])->name('registration')->can('create-users');
 Route::post('registration', [CustomAuthController::class, 'store']);
 Route::get('login', [CustomAuthController::class, 'index'])->name('login');
 Route::post('login', [CustomAuthController::class, 'authentication'])->name('login.authentication');
 Route::get('logout', [CustomAuthController::class, 'logout'])->name('logout');
 
-Route::get('user-list', [CustomAuthController::class, 'userList'])->name('user.list')->middleware('auth');
+Route::get('user-list', [CustomAuthController::class, 'userList'])->name('user.list')->middleware('auth')->can('list-user');
 
 Route::get('lang/{locale}', [LocalizationController::class, 'index'])->name('lang');
 
