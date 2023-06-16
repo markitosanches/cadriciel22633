@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+use App\Http\Controllers\ChatsController;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -20,3 +22,6 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('chat', [ChatsController::class, 'index'])->name('chat');
+Route::get('messages', [ChatsController::class, 'fetchMessages'])->name('messages');
+Route::post('/messages', [ChatsController::class, 'sendMessage'])->name('send.messages');
